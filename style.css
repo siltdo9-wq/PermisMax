@@ -1,0 +1,5 @@
+body { margin: 0; }
+.hidden { display: none; }
+button { cursor: pointer; transition: 0.2s; }
+button:hover { opacity: 0.8; }
+input { box-sizing: border-box; }
