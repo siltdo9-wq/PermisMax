@@ -57,3 +57,44 @@ const questionsDatabase = [
   // -------------------
   // ...
 ];
+// -------------------
+// Téléphone et Distractions (101-114)
+// -------------------
+{ id: 101, category: "Téléphone et Distractions", difficulty: "facile", question: "Est-il autorisé de téléphoner sans kit mains-libres ?", options: ["Oui","Non","Seulement en agglomération","Seulement la nuit"], correctAnswer: 1, explanation: "Interdiction d’utiliser le téléphone sans kit mains-libres." },
+{ id: 102, category: "Téléphone et Distractions", difficulty: "moyen", question: "Que risque-t-on en utilisant le téléphone au volant ?", options: ["Amende","Perte de points","Accident","Tout cela"], correctAnswer: 3, explanation: "Toutes les réponses sont correctes." },
+// ... continuer jusqu'à id 114
+
+// -------------------
+// Dépassement (115-128)
+// -------------------
+{ id: 115, category: "Dépassement", difficulty: "facile", question: "Peut-on dépasser à droite ?", options: ["Oui","Non","Seulement en ville","Seulement sur autoroute"], correctAnswer: 1, explanation: "Le dépassement à droite est interdit sauf exceptions spécifiques." },
+{ id: 116, category: "Dépassement", difficulty: "moyen", question: "Distance minimale pour dépasser ?", options: ["2 mètres","3 mètres","5 mètres","Variable"], correctAnswer: 3, explanation: "La distance dépend du type de route et du véhicule." },
+// ... continuer jusqu'à id 128
+
+// -------------------
+// Environnement (129-142)
+// -------------------
+{ id: 129, category: "Environnement", difficulty: "facile", question: "Qu’est-ce que l’éco-conduite ?", options: ["Conduire vite","Conduire lentement","Conduire économiquement","Conduire en montagne"], correctAnswer: 2, explanation: "Conduire en réduisant consommation et pollution." },
+{ id: 130, category: "Environnement", difficulty: "moyen", question: "Impact des pneus mal gonflés ?", options: ["Aucun","Consommation accrue","Sécurité améliorée","Pollution réduite"], correctAnswer: 1, explanation: "Pneus mal gonflés augmentent consommation et usure." },
+// ... continuer jusqu'à id 142
+
+// -------------------
+// Mécanique (143-156)
+// -------------------
+{ id: 143, category: "Mécanique", difficulty: "facile", question: "Que signifie un voyant rouge moteur ?", options: ["Moteur OK","Problème moteur","Pneus crevés","Feux allumés"], correctAnswer: 1, explanation: "Problème moteur nécessitant intervention." },
+{ id: 144, category: "Mécanique", difficulty: "moyen", question: "Fréquence entretien courant ?", options: ["Chaque semaine","Chaque mois","Selon notice constructeur","Jamais"], correctAnswer: 2, explanation: "Suivre le carnet constructeur." },
+// ... continuer jusqu'à id 156
+
+// -------------------
+// Conduite (157-170)
+// -------------------
+{ id: 157, category: "Conduite", difficulty: "facile", question: "Comment réagir en cas de verglas ?", options: ["Accélérer","Freiner doucement","Tourner brusquement","Rien faire"], correctAnswer: 1, explanation: "Freiner doucement pour garder le contrôle." },
+{ id: 158, category: "Conduite", difficulty: "moyen", question: "Comment négocier un virage dangereux ?", options: ["Accélérer","Ralentir","Freiner brutalement","Rester neutre"], correctAnswer: 1, explanation: "Ralentir avant le virage." },
+// ... continuer jusqu'à id 170
+
+// -------------------
+// Règlementation (171-200)
+// -------------------
+{ id: 171, category: "Règlementation", difficulty: "facile", question: "Nombre de points au permis probatoire ?", options: ["6","8","12","10"], correctAnswer: 0, explanation: "Permis probatoire commence avec 6 points." },
+{ id: 172, category: "Règlementation", difficulty: "moyen", question: "Durée permis probatoire ?", options: ["2 ans","3 ans","1 an","4 ans"], correctAnswer: 0, explanation: "Permis probatoire : 2 ans pour la majorité." },
+// ... continuer jusqu'à id 200
