@@ -1377,3 +1377,27 @@ body.dark-mode .form-group input {
         opacity: 0;
     }
 }
+/* Ajoutez à la fin de style.css */
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Fix pour les options désactivées */
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Animation bounce pour badges */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
