@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Permis de Conduire – Premium</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<header class="bg-blue-600 text-white p-4 text-center">
+    <h1 class="text-3xl font-bold">🚗 Permis de Conduire</h1>
+    <p>2800 questions – Entraînement & Examen blanc</p>
+</header>
+
+<section id="auth" class="p-4 bg-white m-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">👤 Connexion / Inscription</h2>
+    <input type="email" id="email" placeholder="Email" class="border p-2 w-full mb-2">
+    <input type="password" id="password" placeholder="Mot de passe" class="border p-2 w-full mb-2">
+    <button onclick="register()" class="bg-blue-500 text-white p-2 w-full mb-2 rounded">S'inscrire</button>
+    <button onclick="login()" class="bg-green-500 text-white p-2 w-full rounded">Se connecter</button>
+</section>
+
+<section id="premium-box" class="p-4 bg-yellow-100 m-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">💎 Abonnement Premium</h2>
+    <p>Accès complet à l'examen blanc et statistiques avancées.</p>
+    <button id="subscribeBtn" class="bg-yellow-500 text-white p-2 w-full rounded mt-2">S’abonner maintenant – 9,99€/mois</button>
+</section>
+
+<main class="p-4">
+    <section id="quiz" class="hidden p-4 bg-white m-4 rounded shadow">
+        <div id="progress" class="mb-2 font-semibold"></div>
+        <h2 id="question" class="text-lg mb-2"></h2>
+        <div id="options" class="mb-2"></div>
+        <button id="nextBtn" class="hidden bg-blue-500 text-white p-2 rounded" onclick="nextQuestion()">Suivant</button>
+    </section>
+
+    <section id="result" class="hidden p-4 bg-green-100 m-4 rounded shadow"></section>
+    <section id="stats" class="hidden p-4 bg-purple-100 m-4 rounded shadow"></section>
+</main>
+
+<footer class="bg-gray-200 text-center p-4">
+    <p>© 2026 – Code de la route</p>
+</footer>
+
+<script src="questions.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
