@@ -1,57 +1,469 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Permis de Conduire - Quiz</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permis Pro - Révision Permis de Conduire</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-steering-wheel"></i>
+                <span>Permis Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#training" class="nav-link"><i class="fas fa-graduation-cap"></i> Entraînement</a></li>
+                <li><a href="#exam" class="nav-link" id="examLink"><i class="fas fa-file-alt"></i> Examen blanc</a></li>
+                <li><a href="#stats" class="nav-link"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                <li><a href="#account" class="nav-link"><i class="fas fa-user"></i> Compte</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="premiumBadge" class="premium-badge hidden">PREMIUM <i class="fas fa-crown"></i></button>
+                <button id="loginBtn" class="btn btn-primary">Connexion</button>
+                <button id="logoutBtn" class="btn btn-secondary hidden">Déconnexion</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Header -->
-  <header class="bg-blue-600 text-white p-6 shadow-lg">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Permis de Conduire 🚗</h1>
-      <button id="subscribeBtn" class="bg-yellow-400 text-blue-800 font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">Devenir Premium</button>
+    <!-- Modal Connexion/Inscription -->
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-modal">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Connexion</button>
+                <button class="tab-btn" data-tab="register">Inscription</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <h2>Connexion</h2>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Mot de passe</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>Se connecter</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <p class="form-footer">Pas encore de compte ? <a href="#" class="switch-tab">S'inscrire</a></p>
+            </form>
+
+            <form id="registerForm" class="auth-form hidden">
+                <h2>Créer un compte</h2>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="registerEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Mot de passe</label>
+                    <input type="password" id="registerPassword" required placeholder="8 caractères minimum" minlength="8">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>S'inscrire</span>
+                    <i class="fas fa-user-plus"></i>
+                </button>
+                <p class="form-footer">Déjà un compte ? <a href="#" class="switch-tab">Se connecter</a></p>
+            </form>
+        </div>
     </div>
-  </header>
 
-  <!-- Auth Section -->
-  <section id="auth" class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md animate-fadeIn">
-    <h2 class="text-xl font-semibold mb-4 text-blue-600">Connexion / Inscription</h2>
-    <input id="email" type="email" placeholder="Email" class="w-full p-3 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-    <input id="password" type="password" placeholder="Mot de passe" class="w-full p-3 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-    <div class="flex gap-3">
-      <button onclick="register()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">S'inscrire</button>
-      <button onclick="login()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Se connecter</button>
+    <!-- Modal Premium -->
+    <div id="premiumModal" class="modal">
+        <div class="modal-content premium-modal">
+            <span class="close">&times;</span>
+            <div class="premium-header">
+                <i class="fas fa-crown"></i>
+                <h2>Passez à la version Premium</h2>
+                <p>Débloquez tout le potentiel de votre révision</p>
+            </div>
+            
+            <div class="premium-features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Examens blancs illimités (40 questions)</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Statistiques détaillées par thème</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Mode examen chronométré</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Badges et récompenses exclusifs</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Sans publicité</span>
+                </div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="price">
+                    <span class="amount">29€</span>
+                    <span class="period">/accès à vie</span>
+                </div>
+                <button id="payStripe" class="btn btn-stripe">
+                    <i class="fab fa-stripe"></i> Payer par Stripe
+                </button>
+                <div class="payment-methods">
+                    <button class="pay-method" data-method="card">
+                        <i class="fas fa-credit-card"></i> Carte
+                    </button>
+                    <button class="pay-method" data-method="bancontact">
+                        <i class="fas fa-university"></i> Bancontact
+                    </button>
+                    <button class="pay-method" data-method="ideal">
+                        <i class="fas fa-mobile-alt"></i> iDEAL
+                    </button>
+                    <button class="pay-method" data-method="paypal">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </button>
+                </div>
+                <p class="secure-note"><i class="fas fa-shield-alt"></i> Paiement sécurisé SSL 256-bit</p>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Quiz Section -->
-  <section id="quiz" class="hidden max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg animate-fadeIn">
-    <div class="mb-4 flex justify-between items-center">
-      <div id="progress" class="font-semibold text-purple-700">Question 1/40</div>
-      <div class="w-1/2 bg-gray-300 rounded-full h-2">
-        <div id="progressBar" class="bg-purple-500 h-2 rounded-full transition-all duration-300"></div>
-      </div>
-    </div>
-    <div id="question" class="mb-6 text-lg font-medium text-gray-800"></div>
-    <div id="options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-  </section>
+    <!-- Sections -->
+    <main>
+        <!-- Accueil -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="animate-fade-in-up">Réussissez votre <span class="highlight">permis de conduire</span></h1>
+                    <p class="animate-fade-in-up delay-1">Plus de 1000 questions, examens blancs réalistes et statistiques détaillées pour vous garantir la réussite</p>
+                    <div class="hero-buttons animate-fade-in-up delay-2">
+                        <button class="btn btn-primary btn-large" onclick="app.startTraining()">
+                            <i class="fas fa-play"></i> Commencer l'entraînement
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="app.showPremium()">
+                            <i class="fas fa-crown"></i> Voir Premium
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card animate-float">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-card animate-float delay-1">
+                        <i class="fas fa-users"></i>
+                        <span class="stat-number">50k+</span>
+                        <span class="stat-label">Utilisateurs</span>
+                    </div>
+                    <div class="stat-card animate-float delay-2">
+                        <i class="fas fa-trophy"></i>
+                        <span class="stat-number">94%</span>
+                        <span class="stat-label">Réussite</span>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Result Section -->
-  <section id="result" class="hidden max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg text-center animate-fadeIn">
-    <h2 class="text-2xl font-bold text-green-600">Résultat</h2>
-    <p class="mt-4 text-gray-700 text-lg">Votre score : <span id="scoreDisplay">0</span></p>
-    <button onclick="startExam()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition">Recommencer</button>
-  </section>
+            <div class="categories-grid">
+                <h2>Choisissez votre thème</h2>
+                <div class="grid">
+                    <div class="category-card" onclick="app.startCategory('priorite')">
+                        <div class="icon"><i class="fas fa-hand-paper"></i></div>
+                        <h3>Priorité</h3>
+                        <p>Règles de priorité et passages</p>
+                        <span class="count">150 questions</span>
+                    </div>
+                    <div class="category-card" onclick="app.startCategory('panneaux')">
+                        <div class="icon"><i class="fas fa-sign"></i></div>
+                        <h3>Panneaux</h3>
+                        <p>Signalisation verticale et horizontale</p>
+                        <span class="count">200 questions</span>
+                    </div>
+                    <div class="category-card" onclick="app.startCategory('circulation')">
+                        <div class="icon"><i class="fas fa-road"></i></div>
+                        <h3>Circulation</h3>
+                        <p>Règles générales et limitations</p>
+                        <span class="count">200 questions</span>
+                    </div>
+                    <div class="category-card" onclick="app.startCategory('stationnement')">
+                        <div class="icon"><i class="fas fa-parking"></i></div>
+                        <h3>Stationnement</h3>
+                        <p>Arrêt et stationnement</p>
+                        <span class="count">100 questions</span>
+                    </div>
+                    <div class="category-card" onclick="app.startCategory('croisement')">
+                        <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h3>Dépassement</h3>
+                        <p>Croisements et dépassements</p>
+                        <span class="count">100 questions</span>
+                    </div>
+                    <div class="category-card" onclick="app.startCategory('secours')">
+                        <div class="icon"><i class="fas fa-first-aid"></i></div>
+                        <h3>Secours</h3>
+                        <p>Premiers secours et sécurité</p>
+                        <span class="count">100 questions</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer class="text-center p-6 mt-10 text-gray-500">
-    © 2026 - Permis de Conduire Quiz
-  </footer>
+        <!-- Entraînement -->
+        <section id="training" class="section">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="quiz-info">
+                        <span id="questionCounter">Question 1/20</span>
+                        <span id="scoreDisplay">Score: 0</span>
+                    </div>
+                </div>
 
-  <script src="questions.js"></script>
-  <script src="script.js"></script>
+                <div class="question-card" id="questionCard">
+                    <div class="question-number" id="questionNumber">#1</div>
+                    <div class="question-image" id="questionImage"></div>
+                    <h3 id="questionText">Chargement...</h3>
+                    <div class="options-grid" id="optionsGrid">
+                        <!-- Options générées dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="feedback-modal hidden" id="feedbackModal">
+                    <div class="feedback-content">
+                        <div class="feedback-icon" id="feedbackIcon"></div>
+                        <h3 id="feedbackTitle"></h3>
+                        <p id="feedbackText"></p>
+                        <div class="explanation-box" id="explanationBox">
+                            <strong>Explication :</strong>
+                            <p id="explanationText"></p>
+                        </div>
+                        <button class="btn btn-primary" onclick="app.nextQuestion()">
+                            Continuer <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examen blanc -->
+        <section id="exam" class="section">
+            <div class="exam-intro" id="examIntro">
+                <div class="exam-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h2>Examen Blanc</h2>
+                    <p>40 questions aléatoires • 30 minutes • Seuil de réussite : 35/40</p>
+                    <div class="exam-rules">
+                        <div class="rule"><i class="fas fa-check"></i> Conditions réelles d'examen</div>
+                        <div class="rule"><i class="fas fa-check"></i> Chronomètre intégré</div>
+                        <div class="rule"><i class="fas fa-check"></i> Résultat immédiat</div>
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="app.startExam()">
+                        <i class="fas fa-play"></i> Démarrer l'examen
+                    </button>
+                </div>
+            </div>
+
+            <div class="quiz-container hidden" id="examContainer">
+                <div class="exam-timer" id="examTimer">30:00</div>
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="examProgressFill"></div>
+                    </div>
+                    <div class="quiz-info">
+                        <span id="examQuestionCounter">Question 1/40</span>
+                        <span id="examScoreDisplay">0 fautes</span>
+                    </div>
+                </div>
+
+                <div class="question-card" id="examQuestionCard">
+                    <div class="question-number" id="examQuestionNumber">#1</div>
+                    <h3 id="examQuestionText">Chargement...</h3>
+                    <div class="options-grid" id="examOptionsGrid"></div>
+                </div>
+            </div>
+
+            <div class="results-container hidden" id="examResults">
+                <div class="result-card">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <h2 id="resultTitle"></h2>
+                    <div class="result-score" id="resultScore"></div>
+                    <p id="resultMessage"></p>
+                    <div class="result-details" id="resultDetails"></div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="app.reviewExam()">
+                            <i class="fas fa-redo"></i> Revoir les erreurs
+                        </button>
+                        <button class="btn btn-secondary" onclick="app.startExam()">
+                            <i class="fas fa-play"></i> Nouvel examen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistiques -->
+        <section id="stats" class="section">
+            <div class="stats-container">
+                <h2>Vos Statistiques</h2>
+                
+                <div class="stats-overview">
+                    <div class="stat-box animate-fade-in">
+                        <i class="fas fa-bullseye"></i>
+                        <span class="stat-value" id="globalScore">0%</span>
+                        <span class="stat-label">Score global</span>
+                    </div>
+                    <div class="stat-box animate-fade-in delay-1">
+                        <i class="fas fa-fire"></i>
+                        <span class="stat-value" id="currentStreak">0</span>
+                        <span class="stat-label">Série actuelle</span>
+                    </div>
+                    <div class="stat-box animate-fade-in delay-2">
+                        <i class="fas fa-trophy"></i>
+                        <span class="stat-value" id="bestStreak">0</span>
+                        <span class="stat-label">Meilleure série</span>
+                    </div>
+                    <div class="stat-box animate-fade-in delay-3">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-value" id="avgTime">0s</span>
+                        <span class="stat-label">Temps moyen</span>
+                    </div>
+                </div>
+
+                <div class="stats-details">
+                    <div class="chart-container">
+                        <h3>Performance par catégorie</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    
+                    <div class="badges-section">
+                        <h3>Vos Badges</h3>
+                        <div class="badges-grid" id="badgesGrid">
+                            <div class="badge locked" data-badge="starter">
+                                <i class="fas fa-rocket"></i>
+                                <span>Débutant</span>
+                            </div>
+                            <div class="badge locked" data-badge="streak_10">
+                                <i class="fas fa-fire-alt"></i>
+                                <span>Série 10</span>
+                            </div>
+                            <div class="badge locked" data-badge="streak_50">
+                                <i class="fas fa-fire"></i>
+                                <span>Série 50</span>
+                            </div>
+                            <div class="badge locked" data-badge="master">
+                                <i class="fas fa-crown"></i>
+                                <span>Maître</span>
+                            </div>
+                            <div class="badge locked" data-badge="exam_pass">
+                                <i class="fas fa-certificate"></i>
+                                <span>Examen réussi</span>
+                            </div>
+                            <div class="badge locked" data-badge="night_owl">
+                                <i class="fas fa-moon"></i>
+                                <span>Couche-tard</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <h3>Historique des sessions</h3>
+                    <div class="history-list" id="historyList">
+                        <p class="empty-state">Aucune session enregistrée</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compte -->
+        <section id="account" class="section">
+            <div class="account-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileEmail">Utilisateur</h2>
+                            <span class="status-badge" id="accountStatus">Gratuit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="p-stat">
+                            <span class="p-value" id="totalQuestions">0</span>
+                            <span class="p-label">Questions répondues</span>
+                        </div>
+                        <div class="p-stat">
+                            <span class="p-value" id="correctRate">0%</span>
+                            <span class="p-label">Taux de réussite</span>
+                        </div>
+                        <div class="p-stat">
+                            <span class="p-value" id="examTaken">0</span>
+                            <span class="p-label">Examens passés</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="app.showPremium()" id="upgradeBtn">
+                            <i class="fas fa-crown"></i> Passer Premium
+                        </button>
+                        <button class="btn btn-secondary" onclick="app.resetProgress()">
+                            <i class="fas fa-trash"></i> Réinitialiser mes progrès
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Paramètres</h3>
+                    <div class="setting-item">
+                        <label>Mode sombre</label>
+                        <label class="switch">
+                            <input type="checkbox" id="darkMode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Sons</label>
+                        <label class="switch">
+                            <input type="checkbox" id="soundEnabled" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Notifications</label>
+                        <label class="switch">
+                            <input type="checkbox" id="notifications">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer"></div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
