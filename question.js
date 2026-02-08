@@ -139,3 +139,51 @@ const questionsDatabase = [
 { id: 171, category: "Règlementation", difficulty: "facile", question: "Nombre de points au permis probatoire ?", options: ["6","8","12","10"], correctAnswer: 0, explanation: "Permis probatoire commence avec 6 points." },
 { id: 172, category: "Règlementation", difficulty: "moyen", question: "Durée permis probatoire ?", options: ["2 ans","3 ans","1 an","4 ans"], correctAnswer: 0, explanation: "Permis probatoire : 2 ans pour la majorité." },
 // ... continuer jusqu'à id 200
+// -------------------
+// Signalisation (401-415)
+// -------------------
+{ id: 401, category: "Signalisation", difficulty: "facile", question: "Que signifie un panneau carré bleu avec flèche blanche ?", options: ["Direction obligatoire","Stop","Priorité","Sens interdit"], correctAnswer: 0, explanation: "Indique la direction obligatoire." },
+{ id: 402, category: "Signalisation", difficulty: "moyen", question: "Que signifie un panneau avec triangle et chute de pierres ?", options: ["Danger chute de pierres","Route glissante","Travaux","Risque cycliste"], correctAnswer: 0, explanation: "Attention risque chute de pierres." },
+// ... continuer jusqu'à id 415
+
+// -------------------
+// Priorités (416-430)
+// -------------------
+{ id: 416, category: "Priorités", difficulty: "facile", question: "Qui a la priorité sur un giratoire ?", options: ["Celui entrant","Celui circulant","Piéton","Cycliste"], correctAnswer: 1, explanation: "Priorité aux véhicules circulant déjà." },
+{ id: 417, category: "Priorités", difficulty: "moyen", question: "Priorité à un véhicule d'urgence ?", options: ["Toujours","Jamais","Parfois","Seulement en ville"], correctAnswer: 0, explanation: "Toujours priorité aux véhicules d'urgence." },
+// ... continuer jusqu'à id 430
+
+// -------------------
+// Vitesse (431-445)
+// -------------------
+{ id: 431, category: "Vitesse", difficulty: "facile", question: "Vitesse max en ville ?", options: ["50","30","70","90"], correctAnswer: 0, explanation: "50 km/h en ville sauf panneau spécifique." },
+{ id: 432, category: "Vitesse", difficulty: "moyen", question: "Vitesse max sur route nationale humide ?", options: ["80","90","100","110"], correctAnswer: 0, explanation: "80 km/h si chaussée humide." },
+// ... continuer jusqu'à id 445
+
+// -------------------
+// Sécurité (446-460)
+// -------------------
+{ id: 446, category: "Sécurité", difficulty: "facile", question: "Quand utiliser feux de détresse ?", options: ["En cas d'accident","Jamais","En ville","Toujours"], correctAnswer: 0, explanation: "Uniquement en cas d'accident ou panne." },
+{ id: 447, category: "Sécurité", difficulty: "moyen", question: "Distance minimum de sécurité ?", options: ["1 m","2 m","3 m","Variable"], correctAnswer: 3, explanation: "Variable selon vitesse et conditions." },
+// ... continuer jusqu'à id 460
+
+// -------------------
+// Alcool & Stupéfiants (461-475)
+// -------------------
+{ id: 461, category: "Alcool et Stupéfiants", difficulty: "facile", question: "Taux légal alcool conducteur novice ?", options: ["0,2","0,5","0,8","1"], correctAnswer: 0, explanation: "0,2 g/L maximum." },
+{ id: 462, category: "Alcool et Stupéfiants", difficulty: "moyen", question: "Effet alcool sur réflexes ?", options: ["Augmente","Diminue","Ne change rien","Variable"], correctAnswer: 1, explanation: "Diminue réflexes et vigilance." },
+// ... continuer jusqu'à id 475
+
+// -------------------
+// Stationnement (476-490)
+// -------------------
+{ id: 476, category: "Stationnement", difficulty: "facile", question: "Stationnement sur trottoir ?", options: ["Oui","Non"], correctAnswer: 1, explanation: "Interdit sauf signalisation." },
+{ id: 477, category: "Stationnement", difficulty: "moyen", question: "Stationnement handicapé ?", options: ["Réservé badge","Libre","Payant","Interdit"], correctAnswer: 0, explanation: "Réservé aux véhicules possédant le badge." },
+// ... continuer jusqu'à id 490
+
+// -------------------
+// Distance de sécurité (491-500)
+// -------------------
+{ id: 491, category: "Distance de Sécurité", difficulty: "moyen", question: "Règle générale pour distance de sécurité ?", options: ["1 s","2 s","3 s","5 s"], correctAnswer: 2, explanation: "En général 2 secondes par 10 km/h." },
+{ id: 492, category: "Distance de Sécurité", difficulty: "difficile", question: "Distance de freinage à 90 km/h sur route sèche ?", options: ["35 m","40 m","45 m","50 m"], correctAnswer: 2, explanation: "Environ 45 m pour un freinage complet sur route sèche." },
+// ... compléter jusqu'à id 500
