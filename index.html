@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Permis de Conduire – Premium</title>
-<link href="style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permis de Conduire - Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
-<header class="bg-blue-600 text-white p-4 text-center">
-    <h1 class="text-3xl font-bold">🚗 Permis de Conduire</h1>
-    <p>2800 questions – Entraînement & Examen blanc</p>
-</header>
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-6 shadow-lg">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Permis de Conduire 🚗</h1>
+      <button id="subscribeBtn" class="bg-yellow-400 text-blue-800 font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">Devenir Premium</button>
+    </div>
+  </header>
 
-<section id="auth" class="p-4 bg-white m-4 rounded shadow">
-    <h2 class="text-xl font-semibold mb-2">👤 Connexion / Inscription</h2>
-    <input type="email" id="email" placeholder="Email" class="border p-2 w-full mb-2">
-    <input type="password" id="password" placeholder="Mot de passe" class="border p-2 w-full mb-2">
-    <button onclick="register()" class="bg-blue-500 text-white p-2 w-full mb-2 rounded">S'inscrire</button>
-    <button onclick="login()" class="bg-green-500 text-white p-2 w-full rounded">Se connecter</button>
-</section>
+  <!-- Auth Section -->
+  <section id="auth" class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md animate-fadeIn">
+    <h2 class="text-xl font-semibold mb-4 text-blue-600">Connexion / Inscription</h2>
+    <input id="email" type="email" placeholder="Email" class="w-full p-3 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <input id="password" type="password" placeholder="Mot de passe" class="w-full p-3 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <div class="flex gap-3">
+      <button onclick="register()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">S'inscrire</button>
+      <button onclick="login()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Se connecter</button>
+    </div>
+  </section>
 
-<section id="premium-box" class="p-4 bg-yellow-100 m-4 rounded shadow">
-    <h2 class="text-xl font-semibold mb-2">💎 Abonnement Premium</h2>
-    <p>Accès complet à l'examen blanc et statistiques avancées.</p>
-    <button id="subscribeBtn" class="bg-yellow-500 text-white p-2 w-full rounded mt-2">S’abonner maintenant – 9,99€/mois</button>
-</section>
+  <!-- Quiz Section -->
+  <section id="quiz" class="hidden max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg animate-fadeIn">
+    <div class="mb-4 flex justify-between items-center">
+      <div id="progress" class="font-semibold text-purple-700">Question 1/40</div>
+      <div class="w-1/2 bg-gray-300 rounded-full h-2">
+        <div id="progressBar" class="bg-purple-500 h-2 rounded-full transition-all duration-300"></div>
+      </div>
+    </div>
+    <div id="question" class="mb-6 text-lg font-medium text-gray-800"></div>
+    <div id="options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </section>
 
-<main class="p-4">
-    <section id="quiz" class="hidden p-4 bg-white m-4 rounded shadow">
-        <div id="progress" class="mb-2 font-semibold"></div>
-        <h2 id="question" class="text-lg mb-2"></h2>
-        <div id="options" class="mb-2"></div>
-        <button id="nextBtn" class="hidden bg-blue-500 text-white p-2 rounded" onclick="nextQuestion()">Suivant</button>
-    </section>
+  <!-- Result Section -->
+  <section id="result" class="hidden max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg text-center animate-fadeIn">
+    <h2 class="text-2xl font-bold text-green-600">Résultat</h2>
+    <p class="mt-4 text-gray-700 text-lg">Votre score : <span id="scoreDisplay">0</span></p>
+    <button onclick="startExam()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition">Recommencer</button>
+  </section>
 
-    <section id="result" class="hidden p-4 bg-green-100 m-4 rounded shadow"></section>
-    <section id="stats" class="hidden p-4 bg-purple-100 m-4 rounded shadow"></section>
-</main>
+  <footer class="text-center p-6 mt-10 text-gray-500">
+    © 2026 - Permis de Conduire Quiz
+  </footer>
 
-<footer class="bg-gray-200 text-center p-4">
-    <p>© 2026 – Code de la route</p>
-</footer>
-
-<script src="questions.js"></script>
-<script src="script.js"></script>
-
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
